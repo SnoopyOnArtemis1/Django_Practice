@@ -1,0 +1,85 @@
+{% extends 'base.html'%}
+
+{%block title%}Performance{%endblock title%}
+
+{%block content%}
+<div class="ui modal mymodal">
+    <div class="header"><h1>Price data</h1></div>
+        <div class="ui container">
+            <ul>
+                <li><strong>Count: </strong> {{ price.count }}</li>
+                <li><strong>Mean: </strong> {{ price.mean|floatformat }}</li>
+                <li><strong>Median: </strong> {{ price.median }}</li>
+                <li><strong>Max: </strong> {{ price.max }}</li>
+                <li><strong>Min: </strong> {{ price.min }}</li>
+                <li><strong>Std dev: </strong> {{ price.std|floatformat }}</li>
+            </ul>
+        </div>
+    </div>
+
+<!--司：全選＋cmd+ '/'-->
+{% comment %} <p>I'm Mento.</p>
+{{products | safe}} <!-- You can get a table rather than just marks after you refresh the page if you add '| safe' -->
+<hr>
+{{purchases | safe}}
+<hr> {% endcomment %}
+
+<div>
+    <div class="block-center">
+        {%if error_message%}
+            <div class="ui negative message">
+                <i class="close icon"></i>
+                <div class="header">
+                    {{ error_message }}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request.POST %}
+            {% if graph %}
+                <img src="data:image/png;base64, {{ graph | safe}}"> 
+            {% endif%}
+        {% endif %}
+    </div>
+    <form action="" method="post" class="ui form">
+        {% csrf_token %}    
+        <div class="field">
+            <label>Choose a chart type: </label>
+            <div class="ui selection dropdown">
+                <input name="sales" type="hidden">
+                <div class="default text">-----</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item" value="bar">Bar graph</div>
+                    <div class="item" value="line">Line graph</div>
+                    <div class="item" value="count">Count plot</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="two fields">
+                
+                <div class="field">
+                    <label>Data from: </label>
+                    <input placeholder="" name="date_from" type="date">
+                </div>
+                <div class="field">
+                    <label>Data to: </label>
+                    <input placeholder="" name="date_to" type="date">
+                </div>
+
+            </div>
+        </div>
+        <div class="block-center">
+            <button class="ui primary button" type="submit">Select</button>
+        </div>
+    </form>
+    <div class="block-center">
+        <button class="ui secondary button" id ='modal-btn'>See summary</button>
+        <br>
+        <a href={% url 'products:add-purchase-view'%}><button class="ui positive button">Add records</button></a>
+    </div>    
+</div>
+
+{%endblock content%}
