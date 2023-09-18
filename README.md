@@ -1,6 +1,7 @@
 # Django_Practice
 
 ### Project description
+* Self-Practice
 * Practicing time: Jul 2023 – Sep 2023
 * It's a data analysis system which you can add new purchase and see the trend in different types of chart.
 
