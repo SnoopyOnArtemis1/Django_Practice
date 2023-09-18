@@ -1,14 +1,14 @@
 # Django_Practice
 
-# Project description
+### Project description
 > It's a data analysis system which you can add new purchase and see the trend in different types of chart.
 
-## Development tools
+### Development tools
 * Web Framework: Django
 * Data Analysis Tools: Pandas, Matplotlib, Seaborn
 
-## Where to get started
+### Where to get started
 * cd src
-* python manage.py createsuperuser -->create a user in admin to test the login/logout function
+* python manage.py createsuperuser -->create a superuser in admin to test the login/logout function
 * python mangage.py runserver
 * you can use the attached csv file to test the 'Upload file' page
