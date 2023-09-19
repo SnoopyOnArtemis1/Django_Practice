@@ -1,4 +1,4 @@
-# Django_Practice
+# Django_Practice Sep 2023
 
 ### Project description
 * Self-Practice
